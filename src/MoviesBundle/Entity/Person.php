@@ -36,11 +36,16 @@ class Person
     private $name;
 
     /**
-     * @var \stdClass
+     * @var string
      *
-     * @ORM\Column(name="activity", type="object")
+     * @ORM\Column(name="pictureUrl", type="string", length=255)
      */
-    private $activity;
+    private $pictureUrl;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Movie", inversedBy="persons")
+     */
+    private $movies;
 
 
     /**
@@ -100,25 +105,66 @@ class Person
     }
 
     /**
-     * Set activity
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->movies = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add movies
      *
-     * @param \stdClass $activity
+     * @param \MoviesBundle\Entity\Movie $movies
      * @return Person
      */
-    public function setActivity($activity)
+    public function addMovie(\MoviesBundle\Entity\Movie $movies)
     {
-        $this->activity = $activity;
+        $this->movies[] = $movies;
 
         return $this;
     }
 
     /**
-     * Get activity
+     * Remove movies
      *
-     * @return \stdClass 
+     * @param \MoviesBundle\Entity\Movie $movies
      */
-    public function getActivity()
+    public function removeMovie(\MoviesBundle\Entity\Movie $movies)
     {
-        return $this->activity;
+        $this->movies->removeElement($movies);
+    }
+
+    /**
+     * Get movies
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getMovies()
+    {
+        return $this->movies;
+    }
+
+    /**
+     * Set pictureUrl
+     *
+     * @param string $pictureUrl
+     * @return Person
+     */
+    public function setPictureUrl($pictureUrl)
+    {
+        $this->pictureUrl = $pictureUrl;
+
+        return $this;
+    }
+
+    /**
+     * Get pictureUrl
+     *
+     * @return string 
+     */
+    public function getPictureUrl()
+    {
+        return $this->pictureUrl;
     }
 }

@@ -5,5 +5,5 @@ parameters:
 
 services:
     api_service:
-        class: ApiBundle\Controller\DefaultController
+        class: ApiBundle\Controller\CallController
 #        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]

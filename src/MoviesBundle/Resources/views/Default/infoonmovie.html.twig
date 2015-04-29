@@ -1,18 +1,82 @@
+{% extends '::base.html.twig' %}
+
+{% block body %}
 <table class="table">
-    <tr>
-        <th>Titre original</th>
-        <td>{{ movie.originalTitle }}</td>
-    </tr>
-    <tr>
-        <th>Titre</th>
-        <td>{{ movie.title }}</td>
-    </tr>
-    <tr>
-        <th>Année de production</th>
-        <td>{{ movie.productionYear }}</td>
-    </tr>
-    <tr>
-        <th>Synopsis</th>
-        <td>{{ movie.synopsis }}</td>
-    </tr>
+    <thead>
+        <tr>
+            <td colspan="3">Infos générales</td>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td rowspan="6"><img src="https://image.tmdb.org/t/p/w185/{{ movie.posterUrl }}" alt=""/></td>
+            <th>Titre original</th>
+            <td>{{ movie.originalTitle }}</td>
+        </tr>
+        <tr>
+            <th>Titre</th>
+            <td>{{ movie.title }}</td>
+        </tr>
+        <tr>
+            <th>Date de sortie</th>
+            <td>{{ movie.releaseDate }}</td>
+        </tr>
+        <tr>
+            <th>Synopsis</th>
+            <td>{{ movie.synopsis }}</td>
+        </tr>
+        <tr>
+            <th>Durée</th>
+            <td>{{ movie.runtime }} minutes</td>
+        </tr>
+        <tr>
+            <th>Genre(s)</th>
+            <td>
+                {% for genre in movie.genres %}
+                    {{ genre.type }}{% if not loop.last %}, {% endif %}
+                {% endfor %}
+            </td>
+        </tr>
+    </tbody>
 </table>
+
+<br/>
+
+<table class="table">
+    <thead>
+        <tr>
+            <td colspan="2">Casting</td>
+        </tr>
+    </thead>
+    <tbody>
+        {% for cast in movie.cast %}
+            <tr>
+                <td><img src="https://image.tmdb.org/t/p/w185/{{ cast.pictureUrl }}" alt=""/></td>
+                <td>
+                    {{ cast.name }}
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<br/>
+
+<table class="table">
+    <thead>
+        <tr>
+            <td colspan="2">Crew</td>
+        </tr>
+    </thead>
+    <tbody>
+        {% for crew in movie.crew %}
+            <tr>
+                <td><img src="https://image.tmdb.org/t/p/w185/{{ crew.pictureUrl }}" alt=""/></td>
+                <td>
+                    {{ crew.name }}
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "a8905436dd06508bb92e91c8aab1fce2",
+    "hash": "b9d5a410f0c71fa7dff4f9dd38b0ae77",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -1395,12 +1395,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "bee2adad80b43336645428a7dd4385b08fc2b593"
+                "reference": "1439da4c30600a42661db049d57fd25182beb60b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/bee2adad80b43336645428a7dd4385b08fc2b593",
-                "reference": "bee2adad80b43336645428a7dd4385b08fc2b593",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/1439da4c30600a42661db049d57fd25182beb60b",
+                "reference": "1439da4c30600a42661db049d57fd25182beb60b",
                 "shasum": ""
             },
             "require": {
@@ -1504,58 +1504,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2015-04-27 16:39:04"
-        },
-        {
-            "name": "twbs/bootstrap",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/twbs/bootstrap.git",
-                "reference": "421eacb1b1f53ea3e55b7961a87fd2d468a6da08"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/421eacb1b1f53ea3e55b7961a87fd2d468a6da08",
-                "reference": "421eacb1b1f53ea3e55b7961a87fd2d468a6da08",
-                "shasum": ""
-            },
-            "replace": {
-                "twitter/bootstrap": "self.version"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "3.3.x-dev"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Jacob Thornton",
-                    "email": "jacobthornton@gmail.com"
-                },
-                {
-                    "name": "Mark Otto",
-                    "email": "markdotto@gmail.com"
-                }
-            ],
-            "description": "The most popular front-end framework for developing responsive, mobile first projects on the web.",
-            "homepage": "http://getbootstrap.com",
-            "keywords": [
-                "JS",
-                "css",
-                "framework",
-                "front-end",
-                "less",
-                "mobile-first",
-                "responsive",
-                "web"
-            ],
-            "time": "2015-04-28 05:25:59"
+            "time": "2015-04-28 17:26:09"
         },
         {
             "name": "twig/extensions",
@@ -1720,8 +1669,7 @@
     "aliases": [],
     "minimum-stability": "stable",
     "stability-flags": {
-        "symfony/symfony": 20,
-        "twbs/bootstrap": 20
+        "symfony/symfony": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

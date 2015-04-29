@@ -5,12 +5,12 @@ namespace MoviesBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Activity
+ * Person
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="MoviesBundle\Entity\ActivityRepository")
+ * @ORM\Entity(repositoryClass="MoviesBundle\Entity\PersonRepository")
  */
-class Activity
+class Person
 {
     /**
      * @var integer
@@ -35,6 +35,18 @@ class Activity
      */
     private $name;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="pictureUrl", type="string", length=255)
+     */
+    private $pictureUrl;
+
+    /**
+     * @ORM\ManyToMany(targetEntity="Movie", inversedBy="persons")
+     */
+    private $movies;
+
 
     /**
      * Get id
@@ -50,7 +62,7 @@ class Activity
      * Set code
      *
      * @param string $code
-     * @return Activity
+     * @return Person
      */
     public function setCode($code)
     {
@@ -73,7 +85,7 @@ class Activity
      * Set name
      *
      * @param string $name
-     * @return Activity
+     * @return Person
      */
     public function setName($name)
     {
@@ -90,5 +102,46 @@ class Activity
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->movies = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add movies
+     *
+     * @param \MoviesBundle\Entity\Movie $movies
+     * @return Person
+     */
+    public function addMovie(\MoviesBundle\Entity\Movie $movies)
+    {
+        $this->movies[] = $movies;
+
+        return $this;
+    }
+
+    /**
+     * Remove movies
+     *
+     * @param \MoviesBundle\Entity\Movie $movies
+     */
+    public function removeMovie(\MoviesBundle\Entity\Movie $movies)
+    {
+        $this->movies->removeElement($movies);
+    }
+
+    /**
+     * Get movies
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getMovies()
+    {
+        return $this->movies;
     }
 }
