@@ -9,16 +9,25 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 class DefaultController extends Controller
 {
     /**
-     * @Route("/hello/{name}")
+     * @Route("/")
      * @Template()
      */
-    public function indexAction($name)
+    public function indexAction()
     {
-        return array('name' => $name);
+        return array();
     }
 
     /**
-     * @Route("/info/on/movie/{movie}")
+     * @Route("/search", name="_searchmovie")
+     * @Template()
+     */
+    public function searchmovieAction()
+    {
+        return $this->redirect($this->generateUrl('_infoonmovie', array('movie' => $this->getRequest()->get('movie'))));
+    }
+
+    /**
+     * @Route("/info/on/movie/{movie}", name="_infoonmovie")
      * @Template()
      */
     public function infoonmovieAction($movie)

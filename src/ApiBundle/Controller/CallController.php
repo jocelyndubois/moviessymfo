@@ -27,6 +27,10 @@ class CallController extends Controller
         // If using JSON...
         $data = json_decode($response, true);
 
+        if (!isset($data['results'][0])) {
+            throw new \Exception('Film inconnu: '.$movietitle);
+        }
+
         $movieInfos = $data['results'][0];
 
         $fullInfosOnMovie = $this->getInfoForMovie($movieInfos['id']);
