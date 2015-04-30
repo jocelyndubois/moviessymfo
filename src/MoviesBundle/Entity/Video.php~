@@ -5,12 +5,12 @@ namespace MoviesBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Person
+ * Video
  *
  * @ORM\Table()
- * @ORM\Entity(repositoryClass="MoviesBundle\Entity\PersonRepository")
+ * @ORM\Entity(repositoryClass="MoviesBundle\Entity\VideoRepository")
  */
-class Person
+class Video
 {
     /**
      * @var integer
@@ -38,17 +38,26 @@ class Person
     /**
      * @var string
      *
-     * @ORM\Column(name="pictureUrl", type="string", length=255, nullable=true)
+     * @ORM\Column(name="site", type="string", length=255)
      */
-    private $pictureUrl;
+    private $site;
 
     /**
-     * @ORM\OneToMany(targetEntity="MovieCast", mappedBy="person", cascade={"remove", "persist"})
+     * @var string
+     *
+     * @ORM\Column(name="type", type="string", length=255)
      */
-    private $movies;
+    private $type;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Movie", inversedBy="director", cascade={"remove"})
+     * @var string
+     *
+     * @ORM\Column(name="size", type="string", length=255)
+     */
+    private $size;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Movie", inversedBy="videos", cascade={"remove"})
      * @ORM\JoinColumn(name="movie_id", referencedColumnName="id")
      */
     protected $movie;
@@ -68,7 +77,7 @@ class Person
      * Set code
      *
      * @param string $code
-     * @return Person
+     * @return Video
      */
     public function setCode($code)
     {
@@ -91,7 +100,7 @@ class Person
      * Set name
      *
      * @param string $name
-     * @return Person
+     * @return Video
      */
     public function setName($name)
     {
@@ -111,66 +120,94 @@ class Person
     }
 
     /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->movies = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
-     * Add movies
+     * Set site
      *
-     * @param \MoviesBundle\Entity\Movie $movies
-     * @return Person
+     * @param string $site
+     * @return Video
      */
-    public function addMovie(\MoviesBundle\Entity\Movie $movies)
+    public function setSite($site)
     {
-        $this->movies[] = $movies;
+        $this->site = $site;
 
         return $this;
     }
 
     /**
-     * Remove movies
-     *
-     * @param \MoviesBundle\Entity\Movie $movies
-     */
-    public function removeMovie(\MoviesBundle\Entity\Movie $movies)
-    {
-        $this->movies->removeElement($movies);
-    }
-
-    /**
-     * Get movies
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getMovies()
-    {
-        return $this->movies;
-    }
-
-    /**
-     * Set pictureUrl
-     *
-     * @param string $pictureUrl
-     * @return Person
-     */
-    public function setPictureUrl($pictureUrl)
-    {
-        $this->pictureUrl = $pictureUrl;
-
-        return $this;
-    }
-
-    /**
-     * Get pictureUrl
+     * Get site
      *
      * @return string 
      */
-    public function getPictureUrl()
+    public function getSite()
     {
-        return $this->pictureUrl;
+        return $this->site;
+    }
+
+    /**
+     * Set type
+     *
+     * @param string $type
+     * @return Video
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return string 
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * Set size
+     *
+     * @param string $size
+     * @return Video
+     */
+    public function setSize($size)
+    {
+        $this->size = $size;
+
+        return $this;
+    }
+
+    /**
+     * Get size
+     *
+     * @return string 
+     */
+    public function getSize()
+    {
+        return $this->size;
+    }
+
+    /**
+     * Set movie
+     *
+     * @param \MoviesBundle\Entity\Movie $movie
+     * @return Video
+     */
+    public function setMovie(\MoviesBundle\Entity\Movie $movie = null)
+    {
+        $this->movie = $movie;
+
+        return $this;
+    }
+
+    /**
+     * Get movie
+     *
+     * @return \MoviesBundle\Entity\Movie 
+     */
+    public function getMovie()
+    {
+        return $this->movie;
     }
 }

@@ -6,4 +6,5 @@ parameters:
 services:
     api_service:
         class: ApiBundle\Controller\CallController
+        arguments: [ @doctrine.orm.entity_manager ]
 #        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]

@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8"/>
-    <title>{% block title %}Welcome!{% endblock %}</title>
+    <title>{% block title %}MoviesSymfo!{% endblock %}</title>
     {% block stylesheets %}
         {% stylesheets 'bundles/movies/css/*' filter='cssrewrite' %}
         <link rel="stylesheet" href="{{ asset_url }}"/>
@@ -19,7 +19,7 @@
 
             <div class="masthead clearfix">
                 <div class="inner">
-                    <h3 class="masthead-brand">MoviesSympho</h3>
+                    <h3 class="masthead-brand">MoviesSymfo</h3>
                     <nav>
                         <ul class="nav masthead-nav">
                             <form class="navbar-form navbar-left" role="search" action="{{ path('_searchmovie') }}"

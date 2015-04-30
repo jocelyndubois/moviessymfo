@@ -24,7 +24,7 @@ class Person
     /**
      * @var string
      *
-     * @ORM\Column(name="code", type="string", length=255)
+     * @ORM\Column(name="code", type="string", length=255, unique=true)
      */
     private $code;
 
@@ -38,12 +38,12 @@ class Person
     /**
      * @var string
      *
-     * @ORM\Column(name="pictureUrl", type="string", length=255)
+     * @ORM\Column(name="pictureUrl", type="string", length=255, nullable=true)
      */
     private $pictureUrl;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Movie", inversedBy="persons")
+     * @ORM\OneToMany(targetEntity="MovieCast", mappedBy="person", cascade={"remove", "persist"})
      */
     private $movies;
 
