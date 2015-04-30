@@ -46,9 +46,6 @@ class CallController extends Controller
             ->getRepository('MoviesBundle:Movie')
             ->findOneBy(array('code' => $movieInfos['id']));
 
-        $this->em->persist($movie);
-        $this->em->flush();
-
         if (!$movie) {
             $fullInfosOnMovie = $this->getInfoForMovie($movieInfos['id']);
 
@@ -61,6 +58,9 @@ class CallController extends Controller
             $movie->setSynopsis($fullInfosOnMovie['overview']);
             $movie->setRuntime((int)$fullInfosOnMovie['runtime']);
             $movie->setPosterUrl($fullInfosOnMovie['poster_path']);
+
+            $this->em->persist($movie);
+            $this->em->flush();
 
             foreach ($fullInfosOnMovie['genres'] as $genreFromDb) {
                 $genre = $this->em
@@ -84,7 +84,7 @@ class CallController extends Controller
             foreach ($persons as $activity => $person) {
                 if ($activity != 'id') {
                     foreach ($person as $pers) {
-                        if ($activity == 'cast' || $activity == 'cast' && $pers['job'] == 'director') {
+                        if ($activity == 'cast' || ($activity == 'crew' && $pers['job'] == 'Director')) {
                             $personObject = $this->em
                                 ->getRepository('MoviesBundle:Person')
                                 ->findOneBy(array('code' => $pers['id']));
@@ -105,7 +105,7 @@ class CallController extends Controller
                                 $movieCast->setPerson($personObject);
                                 $movieCast->setRole($pers['character']);
                                 $movie->addCast($movieCast);
-                            } elseif ($activity == 'crew' && $pers['job'] == 'director') {
+                            } elseif ($activity == 'crew' && $pers['job'] == 'Director') {
                                 $movie->setDirector($personObject);
                             }
                         }
@@ -113,6 +113,7 @@ class CallController extends Controller
                 }
             }
 
+            $this->em->persist($movie);
             $this->em->flush();
 
             foreach ($this->getVideosForMovie($movie->getCode()) as $video) {

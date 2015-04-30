@@ -85,7 +85,7 @@ class Movie
      * @ORM\OneToOne(targetEntity="Person")
      * @ORM\JoinColumn(name="director", referencedColumnName="id")
      */
-    private $director;<
+    private $director;
 
     /**
      * @ORM\OneToMany(targetEntity="Video", mappedBy="movie", cascade={"remove", "persist"})

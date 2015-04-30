@@ -167,27 +167,4 @@ class Person
     {
         return $this->pictureUrl;
     }
-
-    /**
-     * Set movie
-     *
-     * @param \MoviesBundle\Entity\Movie $movie
-     * @return Person
-     */
-    public function setMovie(\MoviesBundle\Entity\Movie $movie = null)
-    {
-        $this->movie = $movie;
-
-        return $this;
-    }
-
-    /**
-     * Get movie
-     *
-     * @return \MoviesBundle\Entity\Movie 
-     */
-    public function getMovie()
-    {
-        return $this->movie;
-    }
 }
