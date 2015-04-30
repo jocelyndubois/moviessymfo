@@ -88,6 +88,11 @@ class Movie
      */
     private $crew;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Video", mappedBy="movie", cascade={"remove", "persist"})
+     */
+    private $videos;
+
 
 
     /**
@@ -398,5 +403,38 @@ class Movie
     public function getPosterUrl()
     {
         return $this->posterUrl;
+    }
+
+    /**
+     * Add videos
+     *
+     * @param \MoviesBundle\Entity\Video $videos
+     * @return Movie
+     */
+    public function addVideo(\MoviesBundle\Entity\Video $videos)
+    {
+        $this->videos[] = $videos;
+
+        return $this;
+    }
+
+    /**
+     * Remove videos
+     *
+     * @param \MoviesBundle\Entity\Video $videos
+     */
+    public function removeVideo(\MoviesBundle\Entity\Video $videos)
+    {
+        $this->videos->removeElement($videos);
+    }
+
+    /**
+     * Get videos
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getVideos()
+    {
+        return $this->videos;
     }
 }

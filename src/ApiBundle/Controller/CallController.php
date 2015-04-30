@@ -5,6 +5,7 @@ namespace ApiBundle\Controller;
 use MoviesBundle\Entity\Movie;
 use MoviesBundle\Entity\Genre;
 use MoviesBundle\Entity\Person;
+use MoviesBundle\Entity\Video;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -70,15 +71,25 @@ class CallController extends Controller
             }
         }
 
+        foreach ($this->getVideosForMovie($movie->getCode()) as $video) {
+            $videoObject = new Video();
+            $videoObject->setName($video['name']);
+            $videoObject->setCode($video['key']);
+            $videoObject->setSite($video['site']);
+            $videoObject->setSize($video['size']);
+            $videoObject->setType($video['type']);
+            $movie->addVideo($videoObject);
+        }
+
         return $movie;
     }
 
     /**
- * Retourne les infos précises pour un film donné
- *
- * @param $codemovie
- * @return mixed
- */
+     * Retourne les infos précises pour un film donné
+     *
+     * @param $codemovie
+     * @return mixed
+     */
     public function getInfoForMovie($codemovie)
     {
         $ch = curl_init();
@@ -111,5 +122,25 @@ class CallController extends Controller
         // If using JSON...
         $data = json_decode($response, true);
         return $data;
+    }
+
+    /**
+     * Retourne les vidéos pour un film donné
+     *
+     * @param $codemovie
+     * @return mixed
+     */
+    public function getVideosForMovie($codemovie)
+    {
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, 'http://api.themoviedb.org/3/movie/'.urlencode($codemovie).'/videos?api_key=59993a697fab87df40343a36407af05f&language=fr');
+        curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-type: application/json')); // Assuming you're requesting JSON
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+
+        $response = curl_exec($ch);
+
+        // If using JSON...
+        $data = json_decode($response, true);
+        return $data['results'];
     }
 }

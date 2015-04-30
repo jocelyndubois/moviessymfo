@@ -88,6 +88,11 @@ class Movie
      */
     private $crew;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Video", mappedBy="movie", cascade={"remove", "persist"})
+     */
+    private $videos;
+
 
 
     /**
@@ -375,5 +380,28 @@ class Movie
     public function getRuntime()
     {
         return $this->runtime;
+    }
+
+    /**
+     * Set posterUrl
+     *
+     * @param string $posterUrl
+     * @return Movie
+     */
+    public function setPosterUrl($posterUrl)
+    {
+        $this->posterUrl = $posterUrl;
+
+        return $this;
+    }
+
+    /**
+     * Get posterUrl
+     *
+     * @return string 
+     */
+    public function getPosterUrl()
+    {
+        return $this->posterUrl;
     }
 }
