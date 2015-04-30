@@ -24,7 +24,7 @@ class Movie
     /**
      * @var string
      *
-     * @ORM\Column(name="code", type="string", length=255)
+     * @ORM\Column(name="code", type="string", length=255, unique=true)
      */
     private $code;
 
@@ -59,14 +59,14 @@ class Movie
     /**
      * @var integer
      *
-     * @ORM\Column(name="runtime", type="integer")
+     * @ORM\Column(name="runtime", type="integer", nullable=true)
      */
     private $runtime;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="posterUrl", type="string", length=4000)
+     * @ORM\Column(name="posterUrl", type="string", length=255, nullable=true)
      */
     private $posterUrl;
 
@@ -77,16 +77,15 @@ class Movie
     private $genres;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Person", inversedBy="movies")
-     * @ORM\JoinTable(name="movies_cast")
+     * @ORM\OneToMany(targetEntity="MovieCast", mappedBy="movie", cascade={"remove", "persist"})
      */
     private $cast;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Person", inversedBy="movies")
-     * @ORM\JoinTable(name="movies_crew")
+     * @ORM\OneToOne(targetEntity="Person")
+     * @ORM\JoinColumn(name="director", referencedColumnName="id")
      */
-    private $crew;
+    private $director;<
 
     /**
      * @ORM\OneToMany(targetEntity="Video", mappedBy="movie", cascade={"remove", "persist"})
@@ -269,72 +268,7 @@ class Movie
     {
         return $this->persons;
     }
-
-    /**
-     * Add cast
-     *
-     * @param \MoviesBundle\Entity\Person $cast
-     * @return Movie
-     */
-    public function addCast(\MoviesBundle\Entity\Person $cast)
-    {
-        $this->cast[] = $cast;
-
-        return $this;
-    }
-
-    /**
-     * Remove cast
-     *
-     * @param \MoviesBundle\Entity\Person $cast
-     */
-    public function removeCast(\MoviesBundle\Entity\Person $cast)
-    {
-        $this->cast->removeElement($cast);
-    }
-
-    /**
-     * Get cast
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getCast()
-    {
-        return $this->cast;
-    }
-
-    /**
-     * Add crew
-     *
-     * @param \MoviesBundle\Entity\Person $crew
-     * @return Movie
-     */
-    public function addCrew(\MoviesBundle\Entity\Person $crew)
-    {
-        $this->crew[] = $crew;
-
-        return $this;
-    }
-
-    /**
-     * Remove crew
-     *
-     * @param \MoviesBundle\Entity\Person $crew
-     */
-    public function removeCrew(\MoviesBundle\Entity\Person $crew)
-    {
-        $this->crew->removeElement($crew);
-    }
-
-    /**
-     * Get crew
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getCrew()
-    {
-        return $this->crew;
-    }
+    
 
     /**
      * Set releaseDate
@@ -436,5 +370,61 @@ class Movie
     public function getVideos()
     {
         return $this->videos;
+    }
+
+    /**
+     * Set director
+     *
+     * @param \MoviesBundle\Entity\Person $director
+     * @return Movie
+     */
+    public function setDirector(\MoviesBundle\Entity\Person $director = null)
+    {
+        $this->director = $director;
+
+        return $this;
+    }
+
+    /**
+     * Get director
+     *
+     * @return \MoviesBundle\Entity\Person 
+     */
+    public function getDirector()
+    {
+        return $this->director;
+    }
+
+    /**
+     * Add cast
+     *
+     * @param \MoviesBundle\Entity\MovieCast $cast
+     * @return Movie
+     */
+    public function addCast(\MoviesBundle\Entity\MovieCast $cast)
+    {
+        $this->cast[] = $cast;
+
+        return $this;
+    }
+
+    /**
+     * Remove cast
+     *
+     * @param \MoviesBundle\Entity\MovieCast $cast
+     */
+    public function removeCast(\MoviesBundle\Entity\MovieCast $cast)
+    {
+        $this->cast->removeElement($cast);
+    }
+
+    /**
+     * Get cast
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getCast()
+    {
+        return $this->cast;
     }
 }

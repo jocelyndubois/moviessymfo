@@ -24,7 +24,7 @@ class Person
     /**
      * @var string
      *
-     * @ORM\Column(name="code", type="string", length=255)
+     * @ORM\Column(name="code", type="string", length=255, unique=true)
      */
     private $code;
 
@@ -38,12 +38,12 @@ class Person
     /**
      * @var string
      *
-     * @ORM\Column(name="pictureUrl", type="string", length=255)
+     * @ORM\Column(name="pictureUrl", type="string", length=255, nullable=true)
      */
     private $pictureUrl;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Movie", inversedBy="persons")
+     * @ORM\OneToMany(targetEntity="MovieCast", mappedBy="person", cascade={"remove", "persist"})
      */
     private $movies;
 
@@ -166,5 +166,28 @@ class Person
     public function getPictureUrl()
     {
         return $this->pictureUrl;
+    }
+
+    /**
+     * Set movie
+     *
+     * @param \MoviesBundle\Entity\Movie $movie
+     * @return Person
+     */
+    public function setMovie(\MoviesBundle\Entity\Movie $movie = null)
+    {
+        $this->movie = $movie;
+
+        return $this;
+    }
+
+    /**
+     * Get movie
+     *
+     * @return \MoviesBundle\Entity\Movie 
+     */
+    public function getMovie()
+    {
+        return $this->movie;
     }
 }

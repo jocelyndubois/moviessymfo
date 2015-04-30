@@ -19,7 +19,7 @@
         </tr>
         <tr>
             <th>Date de sortie</th>
-            <td>{{ movie.releaseDate }}</td>
+            <td>{{ movie.releaseDate|date("d/m/Y") }}</td>
         </tr>
         <tr>
             <th>Synopsis</th>
@@ -71,53 +71,53 @@
 
     <br/>
 
-    <div style="width: 80%; margin: auto;">
-        <span style="display: inline-block; vertical-align: top; width: 45%;">
-            <table class="table">
-                <thead>
-                <tr>
-                    <td colspan="4"><h4>Cast</h4></td>
-                </tr>
-                </thead>
-                <tbody>
-                {% for cast in movie.cast %}
-                    {% if loop.index is not divisible by(2) %}
-                        <tr style="height: 55px;">
-                    {% endif %}
-                            <td><img src="https://image.tmdb.org/t/p/w185/{{ cast.pictureUrl }}" alt="" width="25"/></td>
-                            <td>
-                                {{ cast.name }}
-                            </td>
-                    {% if loop.index is divisible by(2) or loop.last %}
-                        </tr>
-                    {% endif %}
-                {% endfor %}
-                </tbody>
-            </table>
-        </span>
-        <span style="display: inline-block; vertical-align: top; width: 5%;">&nbsp;</span>
-        <span style="display: inline-block; vertical-align: top; width: 45%;">
-            <table class="table">
-                <thead>
-                <tr>
-                    <td colspan="4"><h4>Crew</h4></td>
-                </tr>
-                </thead>
-                <tbody>
-                {% for crew in movie.crew %}
-                    {% if loop.index is not divisible by(2) %}
-                        <tr style="height: 55px;">
-                    {% endif %}
-                            <td><img src="https://image.tmdb.org/t/p/w185/{{ crew.pictureUrl }}" alt="" width="25"/></td>
-                            <td>
-                                {{ crew.name }}
-                            </td>
-                    {% if loop.index is divisible by(2) or loop.last %}
-                        </tr>
-                    {% endif %}
-                {% endfor %}
-                </tbody>
-            </table>
-        </span>
-    </div>
+    {#<div style="width: 80%; margin: auto;">#}
+        {#<span style="display: inline-block; vertical-align: top; width: 45%;">#}
+            {#<table class="table">#}
+                {#<thead>#}
+                {#<tr>#}
+                    {#<td colspan="4"><h4>Cast</h4></td>#}
+                {#</tr>#}
+                {#</thead>#}
+                {#<tbody>#}
+                {#{% for cast in movie.cast %}#}
+                    {#{% if loop.index is not divisible by(2) %}#}
+                        {#<tr style="height: 55px;">#}
+                    {#{% endif %}#}
+                            {#<td><img src="https://image.tmdb.org/t/p/w185/{{ cast.pictureUrl }}" alt="" width="25"/></td>#}
+                            {#<td>#}
+                                {#{{ cast.name }}#}
+                            {#</td>#}
+                    {#{% if loop.index is divisible by(2) or loop.last %}#}
+                        {#</tr>#}
+                    {#{% endif %}#}
+                {#{% endfor %}#}
+                {#</tbody>#}
+            {#</table>#}
+        {#</span>#}
+        {#<span style="display: inline-block; vertical-align: top; width: 5%;">&nbsp;</span>#}
+        {#<span style="display: inline-block; vertical-align: top; width: 45%;">#}
+            {#<table class="table">#}
+                {#<thead>#}
+                {#<tr>#}
+                    {#<td colspan="4"><h4>Crew</h4></td>#}
+                {#</tr>#}
+                {#</thead>#}
+                {#<tbody>#}
+                {#{% for crew in movie.crew %}#}
+                    {#{% if loop.index is not divisible by(2) %}#}
+                        {#<tr style="height: 55px;">#}
+                    {#{% endif %}#}
+                            {#<td><img src="https://image.tmdb.org/t/p/w185/{{ crew.pictureUrl }}" alt="" width="25"/></td>#}
+                            {#<td>#}
+                                {#{{ crew.name }}#}
+                            {#</td>#}
+                    {#{% if loop.index is divisible by(2) or loop.last %}#}
+                        {#</tr>#}
+                    {#{% endif %}#}
+                {#{% endfor %}#}
+                {#</tbody>#}
+            {#</table>#}
+        {#</span>#}
+    {#</div>#}
 {% endblock %}
