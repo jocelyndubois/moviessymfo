@@ -52,7 +52,7 @@ class Movie
     /**
      * @var string
      *
-     * @ORM\Column(name="synopsis", type="string", length=4000)
+     * @ORM\Column(name="synopsis", type="string", length=4000, nullable=true)
      */
     private $synopsis;
 
@@ -82,7 +82,7 @@ class Movie
     private $cast;
 
     /**
-     * @ORM\OneToOne(targetEntity="Person")
+     * @ORM\ManyToOne(targetEntity="Person", inversedBy="director")
      * @ORM\JoinColumn(name="director", referencedColumnName="id")
      */
     private $director;

@@ -24,7 +24,7 @@ class CallController extends Controller
      * @Route("/searchformovie/{movietitle}")
      * @Template()
      */
-    public function searchformovieAction($movietitle)
+    public function searchformovieAction($movietitle, $exception = false)
     {
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, 'http://api.themoviedb.org/3/search/movie?api_key=59993a697fab87df40343a36407af05f&language=fr&query=' . urlencode($movietitle));
@@ -37,9 +37,14 @@ class CallController extends Controller
         $data = json_decode($response, true);
 
         if (!isset($data['results'][0])) {
-            throw new \Exception('Film inconnu: ' . $movietitle);
+            if ($exception) {
+                throw new \Exception('Film inconnu: ' . $movietitle);
+            } else {
+                return false;
+            }
         }
 
+        //TODO: Améliorer le filtrage de résultat
         $movieInfos = $data['results'][0];
 
         $movie = $this->em

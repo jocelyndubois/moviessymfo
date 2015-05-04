@@ -53,4 +53,24 @@ class DefaultController extends Controller
             'enVideos' => $enVideos
         );
     }
+
+    /**
+     * @Route("/all/movies", name="_allMovies")
+     * @Template()
+     */
+    public function showAllMoviesAction()
+    {
+        $movies = $this->getDoctrine()->getEntityManager()
+            ->getRepository('MoviesBundle:Movie')
+            ->findAll();
+
+        $genres = $this->getDoctrine()->getEntityManager()
+            ->getRepository('MoviesBundle:Genre')
+            ->findAll();
+
+        return array(
+            'movies' => $movies,
+            'genres' => $genres
+        );
+    }
 }

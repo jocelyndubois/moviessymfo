@@ -217,4 +217,27 @@ class Video
     {
         return $this->movie;
     }
+
+    /**
+     * Set lang
+     *
+     * @param string $lang
+     * @return Video
+     */
+    public function setLang($lang)
+    {
+        $this->lang = $lang;
+
+        return $this;
+    }
+
+    /**
+     * Get lang
+     *
+     * @return string 
+     */
+    public function getLang()
+    {
+        return $this->lang;
+    }
 }

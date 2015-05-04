@@ -1,0 +1,24 @@
+{% extends '::general.html.twig' %}
+
+{% block body %}
+    <h1 class="cover-heading">Import terminé</h1>
+    <p class="lead">L'import s'est terminé avec succès, les fils suivants ont étés ajoutés à votre bibliothèque.</p>
+
+    {#TODO: généraliser ça dans un teplate.#}
+    <div style="width: 75%; margin: auto;">
+        <div id="isotop-movies-container">
+            {% for movie in moviesList %}
+                <div class="item">
+                    <img src="https://image.tmdb.org/t/p/w185/{{ movie.posterUrl }}" alt=""/>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        // init Isotope
+        var $container = $('#isotop-movies-container').isotope({
+            // options
+        });
+    </script>
+{% endblock %}

@@ -47,6 +47,11 @@ class Person
      */
     private $movies;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Movie", mappedBy="director")
+     */
+    private $movieDirector;
+
 
     /**
      * Get id
@@ -166,5 +171,39 @@ class Person
     public function getPictureUrl()
     {
         return $this->pictureUrl;
+    }
+
+    /**
+     * Add movieDirector
+     *
+     * @param \MoviesBundle\Entity\Movie $movieDirector
+     *
+     * @return Person
+     */
+    public function addMovieDirector(\MoviesBundle\Entity\Movie $movieDirector)
+    {
+        $this->movieDirector[] = $movieDirector;
+
+        return $this;
+    }
+
+    /**
+     * Remove movieDirector
+     *
+     * @param \MoviesBundle\Entity\Movie $movieDirector
+     */
+    public function removeMovieDirector(\MoviesBundle\Entity\Movie $movieDirector)
+    {
+        $this->movieDirector->removeElement($movieDirector);
+    }
+
+    /**
+     * Get movieDirector
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getMovieDirector()
+    {
+        return $this->movieDirector;
     }
 }

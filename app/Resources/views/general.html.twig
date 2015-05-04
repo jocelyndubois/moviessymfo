@@ -9,6 +9,11 @@
         {% endstylesheets %}
     {% endblock %}
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
+    {% block javascripts %}
+        {% javascripts '@MoviesBundle/Resources/public/js/*' %}
+            <script type="text/javascript" src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+    {% endblock %}
 </head>
 <body>
 
@@ -16,7 +21,7 @@
     <div class="container-fluid">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
-            <a class="navbar-brand" href="{{ path('_homepage') }}">MoviesSymfo</a>
+            <a class="navbar-brand" href="{{ path('_homepage') }}">MoviesFinder</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -37,17 +42,18 @@
                 </li>
             </ul>
         </div>
+        {% for flashMessage in app.session.flashbag.get('error') %}
+            <div class="alert alert-danger alert-dismissible" role="alert">
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <span>{{ flashMessage|raw }}</span>
+            </div>
+        {% endfor %}
         <!-- /.navbar-collapse -->
     </div>
     <!-- /.container-fluid -->
 </nav>
 
 {% block body %}
-{% endblock %}
-{% block javascripts %}
-    {% javascripts '@MoviesBundle/Resources/public/js/*' %}
-        <script type="text/javascript" src="{{ asset_url }}"></script>
-    {% endjavascripts %}
 {% endblock %}
 </body>
 </html>

@@ -1,0 +1,32 @@
+{% extends '::general.html.twig' %}
+
+{% block body %}
+    <div style="width: 75%; margin: auto;">
+        <div id="filters" class="button-group">
+            <button class="btn btn-xs btn-info" data-filter="*">show all</button>
+            {% for genre in genres %}
+                <button class="btn btn-xs btn-info" data-filter=".{{ genre.type }}">{{ genre.type }}</button>
+            {% endfor %}
+        </div>
+
+        <div id="isotop-movies-container">
+            {% for movie in movies %}
+                <div class="item {% for genre in movie.genres %}
+                        {{ genre.type }}{% if not loop.last %} {% endif %}
+                    {% endfor %}"><img src="https://image.tmdb.org/t/p/w185/{{ movie.posterUrl }}" alt=""/></div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        // init Isotope
+        var $container = $('#isotop-movies-container').isotope({
+            // options
+        });
+        // filter items on button click
+        $('#filters').on( 'click', 'button', function() {
+            var filterValue = $(this).attr('data-filter');
+            $container.isotope({ filter: filterValue });
+        });
+    </script>
+{% endblock %}
