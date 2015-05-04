@@ -116,7 +116,10 @@ class CallController extends Controller
             $this->em->persist($movie);
             $this->em->flush();
 
-            foreach ($this->getVideosForMovie($movie->getCode()) as $video) {
+            $videos = $this->getVideosForMovie($movie->getCode());
+            $videos = array_merge($videos, $this->getVideosForMovie($movie->getCode(), 'fr'));
+
+            foreach ($videos as $video) {
                 $videoObject = $this->em
                     ->getRepository('MoviesBundle:Video')
                     ->findOneBy(array('code' => $video['key']));
@@ -128,6 +131,7 @@ class CallController extends Controller
                     $videoObject->setSite($video['site']);
                     $videoObject->setSize($video['size']);
                     $videoObject->setType($video['type']);
+                    $videoObject->setLang($video['iso_639_1']);
                     $videoObject->setMovie($movie);
 
                     $this->em->persist($videoObject);
@@ -189,10 +193,14 @@ class CallController extends Controller
      * @param $codemovie
      * @return mixed
      */
-    public function getVideosForMovie($codemovie)
+    public function getVideosForMovie($codemovie, $language = 'en')
     {
         $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, 'http://api.themoviedb.org/3/movie/' . urlencode($codemovie) . '/videos?api_key=59993a697fab87df40343a36407af05f&language=fr');
+        $url = 'http://api.themoviedb.org/3/movie/' . urlencode($codemovie) . '/videos?api_key=59993a697fab87df40343a36407af05f';
+        if ($language) {
+            $url .= "&language=$language";
+        }
+        curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-type: application/json')); // Assuming you're requesting JSON
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 

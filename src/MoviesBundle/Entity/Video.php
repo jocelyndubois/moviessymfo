@@ -57,6 +57,13 @@ class Video
     private $size;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="lang", type="string", length=255)
+     */
+    private $lang;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Movie", inversedBy="videos", cascade={"remove"})
      * @ORM\JoinColumn(name="movie_id", referencedColumnName="id")
      */
@@ -209,5 +216,28 @@ class Video
     public function getMovie()
     {
         return $this->movie;
+    }
+
+    /**
+     * Set lang
+     *
+     * @param string $lang
+     * @return Video
+     */
+    public function setLang($lang)
+    {
+        $this->lang = $lang;
+
+        return $this;
+    }
+
+    /**
+     * Get lang
+     *
+     * @return string 
+     */
+    public function getLang()
+    {
+        return $this->lang;
     }
 }

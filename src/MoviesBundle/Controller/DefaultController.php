@@ -34,6 +34,23 @@ class DefaultController extends Controller
     {
         $movie = $this->get('api_service')->searchformovieAction($movie);
 
-        return array('movie' => $movie);
+        $frVideos = array();
+        $enVideos = array();
+
+        if (count($movie->getVideos()) > 1) {
+            foreach ($movie->getVideos() as $videos) {
+                if ($videos->getLang() == 'en') {
+                    $enVideos[] = $videos;
+                } elseif ($videos->getLang() == 'fr') {
+                    $frVideos[] = $videos;
+                }
+            }
+        }
+
+        return array(
+            'movie' => $movie,
+            'frVideos' => $frVideos,
+            'enVideos' => $enVideos
+        );
     }
 }

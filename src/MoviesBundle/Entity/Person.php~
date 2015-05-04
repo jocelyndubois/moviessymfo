@@ -47,12 +47,6 @@ class Person
      */
     private $movies;
 
-    /**
-     * @ORM\ManyToOne(targetEntity="Movie", inversedBy="director", cascade={"remove"})
-     * @ORM\JoinColumn(name="movie_id", referencedColumnName="id")
-     */
-    protected $movie;
-
 
     /**
      * Get id
