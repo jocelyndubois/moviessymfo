@@ -1,4 +1,4 @@
-{% extends '::general.html.twig' %}
+{% extends modal is defined ? '::modal.html.twig': '::general.html.twig' %}
 
 {% block body %}
     <table class="table table-responsive" style="width: 80%; margin: auto;">
@@ -50,13 +50,13 @@
 
     <br/>
 
-    {% if frVideos|length > 0 %}
+    {% if movie.frVideos|length > 0 %}
         <div>VF</div>
-        {{ include('MoviesBundle:Default:videoDisplay.html.twig', {'videos': frVideos}) }}
+        {{ include('MoviesBundle:Default:videoDisplay.html.twig', {'videos': movie.frVideos}) }}
     {% endif %}
-    {% if enVideos|length > 0 %}
+    {% if movie.enVideos|length > 0 %}
         <div>VO</div>
-        {{ include('MoviesBundle:Default:videoDisplay.html.twig', {'videos': enVideos}) }}
+        {{ include('MoviesBundle:Default:videoDisplay.html.twig', {'videos': movie.enVideos}) }}
     {% endif %}
 
     <div style="width: 80%; margin: auto;">

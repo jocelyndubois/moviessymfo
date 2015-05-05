@@ -111,6 +111,15 @@ class Movie
      */
     private $users;
 
+    /**
+     * @var array
+     */
+    private $frVideos;
+
+    /**
+     * @var array
+     */
+    private $enVideos;
 
     /**
      * Get id
@@ -526,5 +535,37 @@ class Movie
     public function getRatingNumber()
     {
         return $this->ratingNumber;
+    }
+
+    /**
+     * @return array
+     */
+    public function getFrVideos()
+    {
+        return $this->frVideos;
+    }
+
+    /**
+     * @param array $frVideos
+     */
+    public function setFrVideos($frVideos)
+    {
+        $this->frVideos = $frVideos;
+    }
+
+    /**
+     * @return array
+     */
+    public function getEnVideos()
+    {
+        return $this->enVideos;
+    }
+
+    /**
+     * @param array $enVideos
+     */
+    public function setEnVideos($enVideos)
+    {
+        $this->enVideos = $enVideos;
     }
 }

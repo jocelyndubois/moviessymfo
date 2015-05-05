@@ -8,6 +8,11 @@
 }
 
 .centered-div {
-    width:200px;
+    width:70%;
     margin:auto;
+    margin-top:15%;
+}
+
+.no-display {
+    display: none;
 }
