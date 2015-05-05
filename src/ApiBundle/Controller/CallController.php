@@ -53,7 +53,6 @@ class CallController extends Controller
 
         if (!$movie) {
             $fullInfosOnMovie = $this->getInfoForMovie($movieInfos['id']);
-
             $movie = new Movie();
             $movie->setCode($movieInfos['id']);
             $movie->setOriginalTitle($movieInfos['original_title']);
@@ -63,6 +62,8 @@ class CallController extends Controller
             $movie->setSynopsis($fullInfosOnMovie['overview']);
             $movie->setRuntime((int)$fullInfosOnMovie['runtime']);
             $movie->setPosterUrl($fullInfosOnMovie['poster_path']);
+            $movie->setRating($fullInfosOnMovie['vote_average']);
+            $movie->setRatingNumber($fullInfosOnMovie['vote_count']);
 
             $this->em->persist($movie);
             $this->em->flush();

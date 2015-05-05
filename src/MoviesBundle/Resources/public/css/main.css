@@ -6,3 +6,13 @@
 .item {
     margin: 5px;
 }
+
+.centered-div {
+    width:70%;
+    margin:auto;
+    margin-top:15%;
+}
+
+.no-display {
+    display: none;
+}

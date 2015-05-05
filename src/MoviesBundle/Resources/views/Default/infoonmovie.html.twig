@@ -9,7 +9,7 @@
         </thead>
         <tbody>
         <tr>
-            <td rowspan="7"><img src="https://image.tmdb.org/t/p/w185/{{ movie.posterUrl }}" alt=""/></td>
+            <td rowspan="8"><img src="https://image.tmdb.org/t/p/w185/{{ movie.posterUrl }}" alt=""/></td>
             <th>Titre original</th>
             <td>{{ movie.originalTitle }}</td>
         </tr>
@@ -32,6 +32,10 @@
         <tr>
             <th>Durée</th>
             <td>{{ movie.runtime }} minutes</td>
+        </tr>
+        <tr>
+            <th>Note</th>
+            <td>{{ movie.rating }}/10 ({{ movie.ratingNumber }} votes)</td>
         </tr>
         <tr>
             <th>Genre(s)</th>

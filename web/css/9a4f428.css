@@ -7223,3 +7223,12 @@ body {
     margin: auto;
     width: 80%;
 }
+
+.item {
+    margin: 5px;
+}
+
+.centered-div {
+    width:200px;
+    margin:auto;
+}

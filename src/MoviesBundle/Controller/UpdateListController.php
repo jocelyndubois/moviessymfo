@@ -6,6 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Symfony\Component\Finder\Finder;
+use JMS\SecurityExtraBundle\Annotation\Secure;
 
 class UpdateListController extends Controller
 {
@@ -26,11 +27,14 @@ class UpdateListController extends Controller
 
     /**
      * @Route("/import/movies/from/folder")
+     * @Secure(roles="ROLE_USER")
      * @Template()
      */
     public function importMoviesFromFolderAction()
     {
-        $folder = 'F:\Video\Films';
+        $user = $this->container->get('security.context')->getToken()->getUser();
+        $em = $this->getDoctrine()->getManager();
+        $folder = 'F:\Video\MULTI';
 
         $filter = function (\SplFileInfo $file)
         {
@@ -42,7 +46,6 @@ class UpdateListController extends Controller
         $finder = new Finder();
         $finder->files()->in($folder)->filter($filter);
 
-
         $moviesList = array();
         $moviesErrorsList = array();
         foreach ($finder as $file) {
@@ -52,10 +55,18 @@ class UpdateListController extends Controller
 
             $movie = $this->get('api_service')->searchformovieAction($filename);
             if ($movie) {
+                if (!$user->hasMovie($movie)) {
+                    $user->addMovie($movie);
+                }
                 $moviesList[] = $movie;
             } else {
                 $moviesErrorsList[] = $filename;
             }
+        }
+
+        if (!empty($moviesList)) {
+            $em->persist($user);
+            $em->flush();
         }
 
         if (!empty($moviesErrorsList)) {

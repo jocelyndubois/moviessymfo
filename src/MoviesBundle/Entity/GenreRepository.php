@@ -12,4 +12,15 @@ use Doctrine\ORM\EntityRepository;
  */
 class GenreRepository extends EntityRepository
 {
+//    public function getAllGenresForUser($user)
+//    {
+//        return $this->getEntityManager()
+//            ->createQueryBuilder('g')
+//            ->join('g.movies', 'm')
+//            ->join('m.users', 'u')
+//            ->where('u.id = :userId')->setParameter('userId', $user->getId())
+//            ->orderBy('g.type', 'ASC')
+//            ->getQuery()
+//            ->getResult();
+//    }
 }

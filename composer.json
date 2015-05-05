@@ -18,7 +18,9 @@
         "sensio/distribution-bundle": "~3.0",
         "sensio/framework-extra-bundle": "~3.0",
         "incenteev/composer-parameter-handler": "~2.0",
-        "symfony/finder": "2.6.*@dev"
+        "symfony/finder": "2.6.*@dev",
+        "friendsofsymfony/user-bundle": "~2.0@dev",
+        "jms/security-extra-bundle": "1.5.*@dev"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"

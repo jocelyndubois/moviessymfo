@@ -64,6 +64,20 @@ class Movie
     private $runtime;
 
     /**
+     * @var float
+     *
+     * @ORM\Column(name="rating", type="float", nullable=true)
+     */
+    private $rating;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="ratingNumber", type="integer", nullable=true)
+     */
+    private $ratingNumber;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="posterUrl", type="string", length=255, nullable=true)
@@ -92,6 +106,10 @@ class Movie
      */
     private $videos;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="UserBundle\Entity\User", inversedBy="movies")
+     */
+    private $users;
 
 
     /**
@@ -426,5 +444,87 @@ class Movie
     public function getCast()
     {
         return $this->cast;
+    }
+
+    /**
+     * Add user
+     *
+     * @param \UserBundle\Entity\User $user
+     *
+     * @return Movie
+     */
+    public function addUser(\UserBundle\Entity\User $user)
+    {
+        $this->users[] = $user;
+
+        return $this;
+    }
+
+    /**
+     * Remove user
+     *
+     * @param \UserBundle\Entity\User $user
+     */
+    public function removeUser(\UserBundle\Entity\User $user)
+    {
+        $this->users->removeElement($user);
+    }
+
+    /**
+     * Get users
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getUsers()
+    {
+        return $this->users;
+    }
+
+    /**
+     * Set rating
+     *
+     * @param float $rating
+     *
+     * @return Movie
+     */
+    public function setRating($rating)
+    {
+        $this->rating = $rating;
+
+        return $this;
+    }
+
+    /**
+     * Get rating
+     *
+     * @return float
+     */
+    public function getRating()
+    {
+        return $this->rating;
+    }
+
+    /**
+     * Set ratingNumber
+     *
+     * @param integer $ratingNumber
+     *
+     * @return Movie
+     */
+    public function setRatingNumber($ratingNumber)
+    {
+        $this->ratingNumber = $ratingNumber;
+
+        return $this;
+    }
+
+    /**
+     * Get ratingNumber
+     *
+     * @return integer
+     */
+    public function getRatingNumber()
+    {
+        return $this->ratingNumber;
     }
 }

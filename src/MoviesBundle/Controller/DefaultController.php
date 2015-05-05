@@ -5,6 +5,7 @@ namespace MoviesBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
+use JMS\SecurityExtraBundle\Annotation\Secure;
 
 class DefaultController extends Controller
 {
@@ -56,17 +57,29 @@ class DefaultController extends Controller
 
     /**
      * @Route("/all/movies", name="_allMovies")
+     * @Secure(roles="ROLE_USER")
      * @Template()
      */
     public function showAllMoviesAction()
     {
-        $movies = $this->getDoctrine()->getEntityManager()
-            ->getRepository('MoviesBundle:Movie')
-            ->findAll();
+        $user = $this->container->get('security.context')->getToken()->getUser();
+        $movies = $user->getMovies();
 
-        $genres = $this->getDoctrine()->getEntityManager()
-            ->getRepository('MoviesBundle:Genre')
-            ->findAll();
+        $genres = array();
+        foreach ($movies as $movie) {
+            foreach ($movie->getGenres() as $genre) {
+                if (!in_array($genre, $genres)) {
+                    $genres[] = $genre;
+                }
+            }
+        }
+        foreach ($movies as $movie) {
+            foreach ($movie->getGenres() as $genre) {
+                if (!in_array($genre, $genres)) {
+                    $genres[] = $genre;
+                }
+            }
+        }
 
         return array(
             'movies' => $movies,
