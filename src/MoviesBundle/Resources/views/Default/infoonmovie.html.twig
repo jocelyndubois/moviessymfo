@@ -52,11 +52,11 @@
 
     {% if movie.frVideos|length > 0 %}
         <div>VF</div>
-        {{ include('MoviesBundle:Default:videoDisplay.html.twig', {'videos': movie.frVideos}) }}
+        {{ include('MoviesBundle:Default:videoDisplay.html.twig', {'videos': movie.frVideos, 'movieTitle': movie.title, 'language': 'fr'}) }}
     {% endif %}
     {% if movie.enVideos|length > 0 %}
         <div>VO</div>
-        {{ include('MoviesBundle:Default:videoDisplay.html.twig', {'videos': movie.enVideos}) }}
+        {{ include('MoviesBundle:Default:videoDisplay.html.twig', {'videos': movie.enVideos, 'movieTitle': movie.title, 'language': 'en'}) }}
     {% endif %}
 
     <div style="width: 80%; margin: auto;">

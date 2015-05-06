@@ -6232,7 +6232,7 @@ button.close {
 }
 .modal-content {
   position: relative;
-  background-color: #fff;
+  background-color: #868686;
   -webkit-background-clip: padding-box;
           background-clip: padding-box;
   border: 1px solid #999;
@@ -6263,6 +6263,7 @@ button.close {
   min-height: 16.42857143px;
   padding: 15px;
   border-bottom: 1px solid #e5e5e5;
+  background-color: #333;
 }
 .modal-header .close {
   margin-top: -2px;
@@ -6279,6 +6280,7 @@ button.close {
   padding: 15px;
   text-align: right;
   border-top: 1px solid #e5e5e5;
+  background-color: #868686;
 }
 .modal-footer .btn + .btn {
   margin-bottom: 0;
