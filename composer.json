@@ -20,7 +20,8 @@
         "incenteev/composer-parameter-handler": "~2.0",
         "symfony/finder": "2.6.*@dev",
         "friendsofsymfony/user-bundle": "~2.0@dev",
-        "jms/security-extra-bundle": "1.5.*@dev"
+        "jms/security-extra-bundle": "1.5.*@dev",
+        "bmatzner/jquery-ui-bundle": "dev-master"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"
