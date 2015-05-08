@@ -34,12 +34,20 @@ class DefaultController extends Controller
     public function infoonmovieAction($movie)
     {
         $movie = $this->get('api_service')->searchformovieAction($movie);
+        $movie = $this->setLanguagesVideosForMovie($movie);
 
+        return array(
+            'movie' => $movie
+        );
+    }
+
+    private function setLanguagesVideosForMovie($Movie)
+    {
         $frVideos = array();
         $enVideos = array();
 
-        if (count($movie->getVideos()) > 1) {
-            foreach ($movie->getVideos() as $videos) {
+        if (count($Movie->getVideos()) > 1) {
+            foreach ($Movie->getVideos() as $videos) {
                 if ($videos->getLang() == 'en') {
                     $enVideos[] = $videos;
                 } elseif ($videos->getLang() == 'fr') {
@@ -48,11 +56,10 @@ class DefaultController extends Controller
             }
         }
 
-        return array(
-            'movie' => $movie,
-            'frVideos' => $frVideos,
-            'enVideos' => $enVideos
-        );
+        $Movie->setFrVideos($frVideos);
+        $Movie->setEnVideos($enVideos);
+
+        return $Movie;
     }
 
     /**
@@ -67,6 +74,7 @@ class DefaultController extends Controller
 
         $genres = array();
         foreach ($movies as $movie) {
+            $movie = $this->setLanguagesVideosForMovie($movie);
             foreach ($movie->getGenres() as $genre) {
                 if (!in_array($genre, $genres)) {
                     $genres[] = $genre;

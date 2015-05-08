@@ -1,7 +1,56 @@
 {% extends '::general.html.twig' %}
 
 {% block body %}
-    <div style="width: 75%; margin: auto;">
-        {{ form(form) }}
-    </div>
+    <div class="row">
+        <div class="col-lg-1">
+            <span>&nbsp;</span>
+        </div>
+        <div class="col-lg-4">
+            <img src="{{ asset('bundles/movies/images/batch.png') }}" alt="batch" width="140" height="140">
+            <h2>Générer le fichier</h2>
+            <p>Dans un premier temps, téléchargez le fichier ci-dessous. Placez le dans le dossier de film que vous voulez analyser et double-cliquez dessus. Un fichier GeneratedMovies.txt sera généré.</p>
+            <p><a class="btn btn-default" href="{{ asset('bat/GeneratingMoviesList.bat') }}" role="button">Télécharger le fichier</a></p>
+        </div><!-- /.col-lg-4 -->
+        <div class="col-lg-2">
+            <span>&nbsp;</span>
+        </div>
+        <div class="col-lg-4">
+            <img src="{{ asset('bundles/movies/images/engrenage.png') }}" alt="movies" width="140" height="140">
+            <h2>Uploader le fichier</h2>
+            {{ form_start(form) }}
+                {{ form_errors(form) }}
+            <p>Uploadez le fichier GeneratedMovies.txt généré précédement grâce au formulaire ci-dessous. {{ form_widget(form.folder) }}</p>
+            <p><input type="submit" id="form_save" class="btn btn-default" value="Valider"/></p>
+            {{ form_end(form) }}
+        </div><!-- /.col-lg-4 -->
+        <div class="col-lg-1">
+            <span>&nbsp;</span>
+        </div>
+    </div><!-- /.row -->
+    <div class="row">
+        <div class="col-lg-4">
+            <span>&nbsp;</span>
+        </div><!-- /.col-lg-4 -->
+        <div class="col-lg-4">
+            <img src="{{ asset('bundles/movies/images/movies.png') }}" alt="movies" width="140" height="140">
+            <h2>Attendez pendant la génération</h2>
+            <p>Ceci peux prendre plus ou moins longtemps en fonction du nombre et de l'étrangeté de vos films.</p>
+        </div><!-- /.col-lg-4 -->
+        <div class="col-lg-4">
+            <span>&nbsp;</span>
+        </div><!-- /.col-lg-4 -->
+    </div><!-- /.row -->
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+//            $("#loading-div-background").css({ opacity: 0.8 });
+            $().waitingpopup();
+        });
+
+        $('#form_save').click(function(e){
+            if ($('#form_folder').val() != '') {
+                $().waitingpopup("open");
+            }
+        });
+    </script>
 {% endblock %}
