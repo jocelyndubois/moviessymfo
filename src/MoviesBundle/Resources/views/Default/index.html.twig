@@ -1,10 +1,10 @@
 {% extends '::base.html.twig' %}
 
 {% block body %}
-<h1 class="cover-heading">Bienvenue sur MoviesFinder</h1>
-<p class="lead">Le site est en cours de construction mais vous pouvez faire votre première recherche via le menu ce dessus.</p>
+<h1 class="cover-heading">{% trans %}Bienvenue sur MoviesFinder{% endtrans %}</h1>
+<p class="lead">{% trans %}Le site est en cours de construction mais vous pouvez faire votre première recherche via le menu ce dessus.{% endtrans %}</p>
 <span>
-    <a href="{{ path('_allMovies') }}" class="btn btn-bg btn-info">Accéder à mes films</a>
-    <a href="{{ path('_uploadMovies') }}" class="btn btn-bg btn-info">Importer des films</a>
+    <a href="{{ path('_allMovies') }}" class="btn btn-bg btn-info">{% trans %}Accéder à mes films{% endtrans %}</a>
+    <a href="{{ path('_uploadMovies') }}" class="btn btn-bg btn-info">{% trans %}Importer des films{% endtrans %}</a>
 </span>
 {% endblock %}

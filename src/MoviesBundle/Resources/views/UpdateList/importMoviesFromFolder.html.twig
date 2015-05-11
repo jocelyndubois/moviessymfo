@@ -1,8 +1,8 @@
 {% extends '::general.html.twig' %}
 
 {% block body %}
-    <h1 class="cover-heading">Import terminé <a href="{{ path('_allMovies') }}" class="btn btn-bg btn-info">Accéder à mes films</a></h1>
-    <p class="lead">L'import s'est terminé avec succès, les films suivants ont étés ajoutés à votre bibliothèque.</p>
+    <h1 class="cover-heading">{% trans %}Import terminé{% endtrans %} <a href="{{ path('_allMovies') }}" class="btn btn-bg btn-info">{% trans %}Accéder à mes films{% endtrans %}</a></h1>
+    <p class="lead">{% trans %}L'import s'est terminé avec succès, les films suivants ont étés ajoutés à votre bibliothèque.{% endtrans %}</p>
 
     {#TODO: généraliser ça dans un teplate.#}
     <div style="width: 75%; margin: auto;">

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="fr" target-language="en" datatype="plaintext" original="file.ext">
+    <body>
+      <trans-unit id="2dbfbd72f83c3c20b4c29097f9173e06" resname="Bienvenue sur MoviesFinder">
+        <source>Bienvenue sur MoviesFinder</source>
+        <target>Welcome to MoviesFinder</target>
+      </trans-unit>
+      <trans-unit id="7ea4641c2de15c01e1f91ea185dd3b2b" resname="Le site est en cours de construction mais vous pouvez faire votre première recherche via le menu ce dessus.">
+        <source>Le site est en cours de construction mais vous pouvez faire votre première recherche via le menu ce dessus.</source>
+        <target>The website is under construction but you can do your first search with the upper menu.</target>
+      </trans-unit>
+      <trans-unit id="b6025543e6b5d5a8ffc6d173681e0c4b" resname="Accéder à mes films">
+        <source>Accéder à mes films</source>
+        <target>All my movies</target>
+      </trans-unit>
+      <trans-unit id="bc5691d060c17daf76f8979991a4b815" resname="Importer des films">
+        <source>Importer des films</source>
+        <target>Import some movies</target>
+      </trans-unit>
+      <trans-unit id="34a5154da2195c26ea05e46b1c1bcb4c" resname="Infos générales">
+        <source>Infos générales</source>
+        <target>Global informations</target>
+      </trans-unit>
+      <trans-unit id="bcfa6884a67d2db0cb44ad53bda94a36" resname="Titre original">
+        <source>Titre original</source>
+        <target>Original title</target>
+      </trans-unit>
+      <trans-unit id="99fb48ddce014d8ad24810eeb3bfde68" resname="Titre">
+        <source>Titre</source>
+        <target>Title</target>
+      </trans-unit>
+      <trans-unit id="fcec5a4574d3dc3beb0de173cb9e4a9b" resname="Directeur">
+        <source>Directeur</source>
+        <target>Director</target>
+      </trans-unit>
+      <trans-unit id="7a3ba3cebb0e616c413fa9330ec5b97f" resname="Date de sortie">
+        <source>Date de sortie</source>
+        <target>Realease date</target>
+      </trans-unit>
+      <trans-unit id="24da3c4b755f1bb2b7cc2c32ee6751b3" resname="Synopsis">
+        <source>Synopsis</source>
+        <target>Synopsis</target>
+      </trans-unit>
+      <trans-unit id="fb714a3ee5d310524d2f3471471edf43" resname="Durée">
+        <source>Durée</source>
+        <target>Running time</target>
+      </trans-unit>
+      <trans-unit id="3b0649c72650c313a357338dcdfb64ec" resname="Note">
+        <source>Note</source>
+        <target>Rating</target>
+      </trans-unit>
+      <trans-unit id="e73f49ad425ef678c0fc0a2a2b4c0a0d" resname="Genre(s)">
+        <source>Genre(s)</source>
+        <target>Genre(s)</target>
+      </trans-unit>
+      <trans-unit id="f7418a2d329fe5b71c39192049094cf9" resname="VF">
+        <source>VF</source>
+        <target>French</target>
+      </trans-unit>
+      <trans-unit id="e984ea8be853e1e6c3313e8e1d7eb849" resname="VO">
+        <source>VO</source>
+        <target>English</target>
+      </trans-unit>
+      <trans-unit id="86a59ad7ba2334ad7505f303d3f2ab6e" resname="Casting">
+        <source>Casting</source>
+        <target>Cast</target>
+      </trans-unit>
+      <trans-unit id="f970e2767d0cfe75876ea857f92e319b" resname="as">
+        <source>as</source>
+        <target>as</target>
+      </trans-unit>
+      <trans-unit id="4525a591f32c175be2d6a303e2361697" resname="Tout">
+        <source>Tout</source>
+        <target>All</target>
+      </trans-unit>
+      <trans-unit id="8f789be41a6dc4819028e3439e93fe07" resname="original order">
+        <source>original order</source>
+        <target>Original order</target>
+      </trans-unit>
+      <trans-unit id="7d206237f9912ea010005db2c20b60ce" resname="Fermer">
+        <source>Fermer</source>
+        <target>Close</target>
+      </trans-unit>
+      <trans-unit id="1acdce07976512b597f3bdff06503e48" resname="Import terminé">
+        <source>Import terminé</source>
+        <target>Import finished</target>
+      </trans-unit>
+      <trans-unit id="59c6b3fe5f4ccd8497335aef3662f769" resname="L'import s'est terminé avec succès, les films suivants ont étés ajoutés à votre bibliothèque.">
+        <source>L'import s'est terminé avec succès, les films suivants ont étés ajoutés à votre bibliothèque.</source>
+        <target>The import successfully finished, thoses movies were added to your library.</target>
+      </trans-unit>
+      <trans-unit id="f3b29a359ffe0c50fd2519b55489a754" resname="Générer le fichier">
+        <source>Générer le fichier</source>
+        <target>Generate the file</target>
+      </trans-unit>
+      <trans-unit id="af1bfb287f76323b35cc157d1e22f449" resname="Dans un premier temps, téléchargez le fichier ci-dessous. Placez le dans le dossier de film que vous voulez analyser et double-cliquez dessus. Un fichier GeneratedMovies.txt sera généré.">
+        <source>Dans un premier temps, téléchargez le fichier ci-dessous. Placez le dans le dossier de film que vous voulez analyser et double-cliquez dessus. Un fichier GeneratedMovies.txt sera généré.</source>
+        <target>First of all, download the file. Put it in the folder that you would like to analyse and double click on it. A file named GeneratedMovies.txt will be generated.</target>
+      </trans-unit>
+      <trans-unit id="7855eec89e62fa9f69299b70f7c21887" resname="Télécharger le fichier">
+        <source>Télécharger le fichier</source>
+        <target>Download the file</target>
+      </trans-unit>
+      <trans-unit id="ea9c121dc7b664d8cd9b0d3d58d3335f" resname="Uploader le fichier">
+        <source>Uploader le fichier</source>
+        <target>Upload the file</target>
+      </trans-unit>
+      <trans-unit id="527f94f301dc28eb2d920a05a2581b89" resname="Uploadez le fichier GeneratedMovies.txt généré précédement grâce au formulaire ci-dessous.">
+        <source>Uploadez le fichier GeneratedMovies.txt généré précédement grâce au formulaire ci-dessous.</source>
+        <target>Upload the file GeneratedMovies.txt that you generated just before with the following form.</target>
+      </trans-unit>
+      <trans-unit id="7494b947fb8d75b27f502865f1c0a45d" resname="Valider">
+        <source>Valider</source>
+        <target>Validate</target>
+      </trans-unit>
+      <trans-unit id="18a02736e28d89b81e1c48cc99fe6003" resname="Attendez pendant la génération">
+        <source>Attendez pendant la génération</source>
+        <target>Wait during the generation</target>
+      </trans-unit>
+      <trans-unit id="34a4e8d5d979250045762d6f63e7b4fc" resname="Ceci peux prendre plus ou moins longtemps en fonction du nombre et de l'étrangeté de vos films.">
+        <source>Ceci peux prendre plus ou moins longtemps en fonction du nombre et de l'étrangeté de vos films.</source>
+        <target>It can take several minutes. If you have a lot of movies or stranges ones, it will be longer.</target>
+      </trans-unit>
+      <trans-unit id="791f5942e42ed1e443f9a4d624750e09" resname="comme">
+        <source>comme</source>
+        <target>__comme</target>
+      </trans-unit>
+      <trans-unit id="27aa96a57b8c48d557c543236ade5875" resname="Ordre de base">
+        <source>Ordre de base</source>
+        <target>Basic order</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

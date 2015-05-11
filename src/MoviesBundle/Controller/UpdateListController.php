@@ -13,7 +13,7 @@ use JMS\SecurityExtraBundle\Annotation\Secure;
 class UpdateListController extends Controller
 {
     /**
-     * @Route("/upload/movies", name="_uploadMovies")
+     * @Route("/{_locale}/upload/movies", name="_uploadMovies", defaults={"_locale" = "fr"}, requirements={"_locale" = "|en|fr"})
      * @Secure(roles="ROLE_USER")
      * @Template()
      */
@@ -97,8 +97,8 @@ class UpdateListController extends Controller
 
     private function generateStringForFlashMessage($list)
     {
-        $result = "Les films suivants n'ont pas étés trouvés, essayez de les renommer puis refaites un import.
-        <ul>";
+        $result = $this->get('translator')->trans("Les films suivants n'ont pas étés trouvés, essayez de les renommer puis refaites un import.");
+        $result = "<ul>";
         foreach ($list as $movie) {
             $result .= "<li>$movie</li>";
         }

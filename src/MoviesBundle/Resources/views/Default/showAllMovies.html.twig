@@ -3,15 +3,16 @@
 {% block body %}
     <div style="width: 75%; margin: auto;">
         <div id="filters" class="button-group">
-            <button class="btn btn-xs btn-info" data-filter="*">Tout</button>
+            <button class="btn btn-xs btn-info" data-filter="*">{% trans %}Tout{% endtrans %}</button>
             {% for genre in genres %}
                 <button class="btn btn-xs btn-info" data-filter=".{{ genre.type }}">{{ genre.type }}</button>
             {% endfor %}
         </div>
         <div id="sorts" class="button-group">
-            <button class="btn btn-xs btn-info" data-sort-by="original-order">original order</button>
-            <button class="btn btn-xs btn-info" data-sort-by="title">Titre</button>
-            <button class="btn btn-xs btn-info" data-sort-by="rating">Note</button>
+            <button class="btn btn-xs btn-info" data-sort-by="original-order">{% trans %}Ordre de base{% endtrans %}</button>
+            <button class="btn btn-xs btn-info" data-sort-by="title">{% trans %}Titre{% endtrans %}</button>
+            <button class="btn btn-xs btn-info" data-sort-by="rating">{% trans %}Note{% endtrans %}</button>
+            <button class="btn btn-xs btn-info" data-sort-by="date">{% trans %}Date de sortie{% endtrans %}</button>
         </div>
 
         <div id="isotop-movies-container">
@@ -19,7 +20,14 @@
                 <div class="item {% for genre in movie.genres %}{{ genre.type }}{% if not loop.last %} {% endif %}{% endfor %}">
                     <p class="title no-display">{{ movie.title }}</p>
                     <p class="rating no-display">{{ movie.rating }}</p>
-                    <a id="modalButton{{ movie.code }}" href="#" data-toggle="modal" data-target="#modalFor{{ movie.code }}"><img src="https://image.tmdb.org/t/p/w185/{{ movie.posterUrl }}" alt=""/></a>
+                    <p class="date no-display">{{ movie.releaseDate|date("Y-m-d") }}</p>
+                    <a id="modalButton{{ movie.code }}" href="#" data-toggle="modal" data-target="#modalFor{{ movie.code }}">
+                        {% if movie.posterUrl is not null %}
+                            <img src="https://image.tmdb.org/t/p/w185/{{ movie.posterUrl }}" alt=""/>
+                        {% else %}
+                            <img src="http://dummyimage.com/185x278/000/fff.png&text={{ movie.title }}" alt=""/>
+                        {% endif %}
+                    </a>
                 </div>
             {% endfor %}
         </div>
@@ -33,13 +41,13 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                        <h4 class="modal-title" id="myModalLabel">{{ movie.title }}</h4>
+                        <h4 class="modal-title" id="myModalLabel">{{ movie.titleInLibrary }}</h4>
                     </div>
                     <div class="modal-body">
                         {#{{ include('MoviesBundle:Default:infoonmovie.html.twig', {'movie': movie, 'modal': true}) }}#}
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">{% trans %}Fermer{% endtrans %}</button>
                     </div>
                 </div>
             </div>
@@ -51,7 +59,8 @@
         var $container = $('#isotop-movies-container').isotope({
             getSortData: {
                 title: '.title',
-                rating: '.rating'
+                rating: '.rating',
+                date: '.date'
             }
         });
         // filter items on button click

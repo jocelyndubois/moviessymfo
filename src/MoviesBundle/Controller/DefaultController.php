@@ -10,7 +10,7 @@ use JMS\SecurityExtraBundle\Annotation\Secure;
 class DefaultController extends Controller
 {
     /**
-     * @Route("/", name="_homepage")
+     * @Route("/{_locale}/", name="_homepage", defaults={"_locale" = "fr"}, requirements={"_locale" = "|en|fr"})
      * @Template()
      */
     public function indexAction()
@@ -19,7 +19,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/search", name="_searchmovie")
+     * @Route("/{_locale}/search", name="_searchmovie", defaults={"_locale" = "fr"}, requirements={"_locale" = "|en|fr"})
      * @Template()
      */
     public function searchmovieAction()
@@ -28,7 +28,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/info/on/movie/{movie}", name="_infoonmovie")
+     * @Route("/{_locale}/info/on/movie/{movie}", name="_infoonmovie", defaults={"_locale" = "fr"}, requirements={"_locale" = "|en|fr"})
      * @Template()
      */
     public function infoonmovieAction($movie)
@@ -63,7 +63,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/all/movies", name="_allMovies")
+     * @Route("/{_locale}/all/movies", name="_allMovies", defaults={"_locale" = "fr"}, requirements={"_locale" = "|en|fr"})
      * @Secure(roles="ROLE_USER")
      * @Template()
      */
@@ -75,9 +75,11 @@ class DefaultController extends Controller
         $movies = array();
         foreach ($moviesUsers as $movieUser) {
             //TODO: Investiguer sur cet hydrate chelou
-            $movies[] = $em
+            $foundMovie = $em
                 ->getRepository('MoviesBundle:Movie')
                 ->find($movieUser->getMovie()->getId());
+            $foundMovie->setTitleInLibrary($movieUser->getLocalName());
+            $movies[] = $foundMovie;
         }
 
 

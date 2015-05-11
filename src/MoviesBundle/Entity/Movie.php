@@ -127,6 +127,11 @@ class Movie
     private $enVideos;
 
     /**
+     * @var string
+     */
+    private $titleInLibrary;
+
+    /**
      * Get id
      *
      * @return integer 
@@ -572,5 +577,21 @@ class Movie
     public function getUsers()
     {
         return $this->users;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTitleInLibrary()
+    {
+        return $this->titleInLibrary;
+    }
+
+    /**
+     * @param string $titleInLibrary
+     */
+    public function setTitleInLibrary($titleInLibrary)
+    {
+        $this->titleInLibrary = $titleInLibrary;
     }
 }

@@ -7,20 +7,20 @@
         </div>
         <div class="col-lg-4">
             <img src="{{ asset('bundles/movies/images/batch.png') }}" alt="batch" width="140" height="140">
-            <h2>Générer le fichier</h2>
-            <p>Dans un premier temps, téléchargez le fichier ci-dessous. Placez le dans le dossier de film que vous voulez analyser et double-cliquez dessus. Un fichier GeneratedMovies.txt sera généré.</p>
-            <p><a class="btn btn-default" href="{{ asset('bat/GeneratingMoviesList.bat') }}" role="button">Télécharger le fichier</a></p>
+            <h2>{% trans %}Générer le fichier{% endtrans %}</h2>
+            <p>{% trans %}Dans un premier temps, téléchargez le fichier ci-dessous. Placez le dans le dossier de film que vous voulez analyser et double-cliquez dessus. Un fichier GeneratedMovies.txt sera généré.{% endtrans %}</p>
+            <p><a class="btn btn-default" href="{{ asset('bat/GeneratingMoviesList.bat') }}" role="button">{% trans %}Télécharger le fichier{% endtrans %}</a></p>
         </div><!-- /.col-lg-4 -->
         <div class="col-lg-2">
             <span>&nbsp;</span>
         </div>
         <div class="col-lg-4">
             <img src="{{ asset('bundles/movies/images/engrenage.png') }}" alt="movies" width="140" height="140">
-            <h2>Uploader le fichier</h2>
+            <h2>{% trans %}Uploader le fichier{% endtrans %}</h2>
             {{ form_start(form) }}
                 {{ form_errors(form) }}
-            <p>Uploadez le fichier GeneratedMovies.txt généré précédement grâce au formulaire ci-dessous. {{ form_widget(form.folder) }}</p>
-            <p><input type="submit" id="form_save" class="btn btn-default" value="Valider"/></p>
+            <p>{% trans %}Uploadez le fichier GeneratedMovies.txt généré précédement grâce au formulaire ci-dessous.{% endtrans %} {{ form_widget(form.folder) }}</p>
+            <p><input type="submit" id="form_save" class="btn btn-default" value="{% trans %}Valider{% endtrans %}"/></p>
             {{ form_end(form) }}
         </div><!-- /.col-lg-4 -->
         <div class="col-lg-1">
@@ -33,8 +33,8 @@
         </div><!-- /.col-lg-4 -->
         <div class="col-lg-4">
             <img src="{{ asset('bundles/movies/images/movies.png') }}" alt="movies" width="140" height="140">
-            <h2>Attendez pendant la génération</h2>
-            <p>Ceci peux prendre plus ou moins longtemps en fonction du nombre et de l'étrangeté de vos films.</p>
+            <h2>{% trans %}Attendez pendant la génération{% endtrans %}</h2>
+            <p>{% trans %}Ceci peux prendre plus ou moins longtemps en fonction du nombre et de l'étrangeté de vos films.{% endtrans %}</p>
         </div><!-- /.col-lg-4 -->
         <div class="col-lg-4">
             <span>&nbsp;</span>

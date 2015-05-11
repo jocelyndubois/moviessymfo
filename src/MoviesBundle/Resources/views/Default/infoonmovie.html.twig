@@ -4,41 +4,41 @@
     <table class="table table-responsive" style="width: 80%; margin: auto;">
         <thead>
         <tr>
-            <td colspan="3"><h4>Infos générales</h4></td>
+            <td colspan="3"><h4>{% trans %}Infos générales{% endtrans %}</h4></td>
         </tr>
         </thead>
         <tbody>
         <tr>
             <td rowspan="8"><img src="https://image.tmdb.org/t/p/w185/{{ movie.posterUrl }}" alt=""/></td>
-            <th>Titre original</th>
+            <th>{% trans %}Titre original{% endtrans %}</th>
             <td>{{ movie.originalTitle }}</td>
         </tr>
         <tr>
-            <th>Titre</th>
+            <th>{% trans %}Titre{% endtrans %}</th>
             <td>{{ movie.title }}</td>
         </tr>
         <tr>
-            <th>Directeur</th>
+            <th>{% trans %}Directeur{% endtrans %}</th>
             <td>{{ movie.director.name }}</td>
         </tr>
         <tr>
-            <th>Date de sortie</th>
+            <th>{% trans %}Date de sortie{% endtrans %}</th>
             <td>{{ movie.releaseDate|date("d/m/Y") }}</td>
         </tr>
         <tr>
-            <th>Synopsis</th>
+            <th>{% trans %}Synopsis{% endtrans %}</th>
             <td>{{ movie.synopsis }}</td>
         </tr>
         <tr>
-            <th>Durée</th>
+            <th>{% trans %}Durée{% endtrans %}</th>
             <td>{{ movie.runtime }} minutes</td>
         </tr>
         <tr>
-            <th>Note</th>
+            <th>{% trans %}Note{% endtrans %}</th>
             <td>{{ movie.rating }}/10 ({{ movie.ratingNumber }} votes)</td>
         </tr>
         <tr>
-            <th>Genre(s)</th>
+            <th>{% trans %}Genre(s){% endtrans %}</th>
             <td>
                 {% for genre in movie.genres %}
                     {{ genre.type }}{% if not loop.last %}, {% endif %}
@@ -51,11 +51,11 @@
     <br/>
 
     {% if movie.frVideos|length > 0 %}
-        <div>VF</div>
+        <div>{% trans %}VF{% endtrans %}</div>
         {{ include('MoviesBundle:Default:videoDisplay.html.twig', {'videos': movie.frVideos, 'movieTitle': movie.title, 'language': 'fr'}) }}
     {% endif %}
     {% if movie.enVideos|length > 0 %}
-        <div>VO</div>
+        <div>{% trans %}VO{% endtrans %}</div>
         {{ include('MoviesBundle:Default:videoDisplay.html.twig', {'videos': movie.enVideos, 'movieTitle': movie.title, 'language': 'en'}) }}
     {% endif %}
 
@@ -64,7 +64,7 @@
             <table class="table">
                 <thead>
                 <tr>
-                    <td colspan="4"><h4>Cast</h4></td>
+                    <td colspan="4"><h4>{% trans %}Casting{% endtrans %}</h4></td>
                 </tr>
                 </thead>
                 <tbody>
@@ -74,7 +74,7 @@
                     {% endif %}
                             <td><img src="https://image.tmdb.org/t/p/w185/{{ cast.person.pictureUrl }}" alt="" width="25"/></td>
                             <td>
-                                {{ cast.person.name }} <b>as</b> {{ cast.role }}
+                                {{ cast.person.name }} <b>{% trans %}comme{% endtrans %}</b> {{ cast.role }}
                             </td>
                     {% if loop.index is divisible by(2) or loop.last %}
                         </tr>
