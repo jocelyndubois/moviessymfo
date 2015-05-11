@@ -106,8 +106,13 @@ class Movie
      */
     private $videos;
 
+//    /**
+//     * @ORM\ManyToMany(targetEntity="UserBundle\Entity\User", inversedBy="movies")
+//     */
+//    private $users;
+
     /**
-     * @ORM\ManyToMany(targetEntity="UserBundle\Entity\User", inversedBy="movies")
+     * @ORM\OneToMany(targetEntity="MovieUser", mappedBy="movie", cascade={"remove", "persist"})
      */
     private $users;
 
@@ -456,40 +461,6 @@ class Movie
     }
 
     /**
-     * Add user
-     *
-     * @param \UserBundle\Entity\User $user
-     *
-     * @return Movie
-     */
-    public function addUser(\UserBundle\Entity\User $user)
-    {
-        $this->users[] = $user;
-
-        return $this;
-    }
-
-    /**
-     * Remove user
-     *
-     * @param \UserBundle\Entity\User $user
-     */
-    public function removeUser(\UserBundle\Entity\User $user)
-    {
-        $this->users->removeElement($user);
-    }
-
-    /**
-     * Get users
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getUsers()
-    {
-        return $this->users;
-    }
-
-    /**
      * Set rating
      *
      * @param float $rating
@@ -567,5 +538,39 @@ class Movie
     public function setEnVideos($enVideos)
     {
         $this->enVideos = $enVideos;
+    }
+
+    /**
+     * Add user
+     *
+     * @param \MoviesBundle\Entity\MovieUser $user
+     *
+     * @return Movie
+     */
+    public function addUser(\MoviesBundle\Entity\MovieUser $user)
+    {
+        $this->users[] = $user;
+
+        return $this;
+    }
+
+    /**
+     * Remove user
+     *
+     * @param \MoviesBundle\Entity\MovieUser $user
+     */
+    public function removeUser(\MoviesBundle\Entity\MovieUser $user)
+    {
+        $this->users->removeElement($user);
+    }
+
+    /**
+     * Get users
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getUsers()
+    {
+        return $this->users;
     }
 }

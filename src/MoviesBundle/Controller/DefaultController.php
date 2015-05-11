@@ -70,7 +70,16 @@ class DefaultController extends Controller
     public function showAllMoviesAction()
     {
         $user = $this->container->get('security.context')->getToken()->getUser();
-        $movies = $user->getMovies();
+        $em = $this->getDoctrine()->getManager();
+        $moviesUsers = $user->getMovies();
+        $movies = array();
+        foreach ($moviesUsers as $movieUser) {
+            //TODO: Investiguer sur cet hydrate chelou
+            $movies[] = $em
+                ->getRepository('MoviesBundle:Movie')
+                ->find($movieUser->getMovie()->getId());
+        }
+
 
         $genres = array();
         foreach ($movies as $movie) {

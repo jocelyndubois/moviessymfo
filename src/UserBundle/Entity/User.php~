@@ -20,9 +20,14 @@ class User extends BaseUser
      */
     protected $id;
 
+//    /**
+//     * @ORM\ManyToMany(targetEntity="MoviesBundle\Entity\Movie", inversedBy="users")
+//     * @ORM\JoinTable(name="movies_users")
+//     */
+//    private $movies;
+
     /**
-     * @ORM\ManyToMany(targetEntity="MoviesBundle\Entity\Movie", inversedBy="users")
-     * @ORM\JoinTable(name="movies_users")
+     * @ORM\OneToMany(targetEntity="MoviesBundle\Entity\MovieUser", mappedBy="user", cascade={"remove", "persist"})
      */
     private $movies;
 
@@ -31,5 +36,13 @@ class User extends BaseUser
     {
         parent::__construct();
         // your own logic
+    }
+
+    public function hasMovie(\MoviesBundle\Entity\Movie $movie){
+        if ($this->getMovies()->contains($movie)) {
+            return true;
+        }
+
+        return false;
     }
 }

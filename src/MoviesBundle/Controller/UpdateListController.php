@@ -2,6 +2,7 @@
 
 namespace MoviesBundle\Controller;
 
+use MoviesBundle\Entity\MovieUser;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
@@ -62,7 +63,17 @@ class UpdateListController extends Controller
             $movie = $this->get('api_service')->searchformovieAction($filename);
             if ($movie) {
                 if (!$user->hasMovie($movie)) {
-                    $user->addMovie($movie);
+                    $movieUser = new MovieUser();
+                    $movieUser->setMovie($movie);
+                    $movieUser->setUser($user);
+                    $movieUser->setLocalName(utf8_decode($filename));
+                    $movie->addUser($movieUser);
+                    $user->addMovie($movieUser);
+
+                    $em->persist($movieUser);
+                    $em->persist($movie);
+                    $em->persist($user);
+                    $em->flush();
                 }
                 $moviesList[] = $movie;
             } else {

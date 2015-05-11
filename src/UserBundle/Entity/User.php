@@ -20,9 +20,14 @@ class User extends BaseUser
      */
     protected $id;
 
+//    /**
+//     * @ORM\ManyToMany(targetEntity="MoviesBundle\Entity\Movie", inversedBy="users")
+//     * @ORM\JoinTable(name="movies_users")
+//     */
+//    private $movies;
+
     /**
-     * @ORM\ManyToMany(targetEntity="MoviesBundle\Entity\Movie", inversedBy="users")
-     * @ORM\JoinTable(name="movies_users")
+     * @ORM\OneToMany(targetEntity="MoviesBundle\Entity\MovieUser", mappedBy="user", cascade={"remove", "persist"})
      */
     private $movies;
 
@@ -36,11 +41,11 @@ class User extends BaseUser
     /**
      * Add movie
      *
-     * @param \MoviesBundle\Entity\Movie $movie
+     * @param \MoviesBundle\Entity\MovieUser $movie
      *
      * @return User
      */
-    public function addMovie(\MoviesBundle\Entity\Movie $movie)
+    public function addMovie(\MoviesBundle\Entity\MovieUser $movie)
     {
         $this->movies[] = $movie;
 
@@ -50,9 +55,9 @@ class User extends BaseUser
     /**
      * Remove movie
      *
-     * @param \MoviesBundle\Entity\Movie $movie
+     * @param \MoviesBundle\Entity\MovieUser $movie
      */
-    public function removeMovie(\MoviesBundle\Entity\Movie $movie)
+    public function removeMovie(\MoviesBundle\Entity\MovieUser $movie)
     {
         $this->movies->removeElement($movie);
     }
@@ -68,8 +73,10 @@ class User extends BaseUser
     }
 
     public function hasMovie(\MoviesBundle\Entity\Movie $movie){
-        if ($this->getMovies()->contains($movie)) {
-            return true;
+        foreach ($this->getMovies() as $movieUser) {
+            if($movieUser->getMovie() == $movie) {
+                return true;
+            }
         }
 
         return false;

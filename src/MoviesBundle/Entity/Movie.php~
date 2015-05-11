@@ -106,11 +106,25 @@ class Movie
      */
     private $videos;
 
+//    /**
+//     * @ORM\ManyToMany(targetEntity="UserBundle\Entity\User", inversedBy="movies")
+//     */
+//    private $users;
+
     /**
-     * @ORM\ManyToMany(targetEntity="UserBundle\Entity\User", inversedBy="movies")
+     * @ORM\OneToMany(targetEntity="MovieUser", mappedBy="movie", cascade={"remove", "persist"})
      */
     private $users;
 
+    /**
+     * @var array
+     */
+    private $frVideos;
+
+    /**
+     * @var array
+     */
+    private $enVideos;
 
     /**
      * Get id
@@ -447,40 +461,6 @@ class Movie
     }
 
     /**
-     * Add user
-     *
-     * @param \UserBundle\Entity\User $user
-     *
-     * @return Movie
-     */
-    public function addUser(\UserBundle\Entity\User $user)
-    {
-        $this->users[] = $user;
-
-        return $this;
-    }
-
-    /**
-     * Remove user
-     *
-     * @param \UserBundle\Entity\User $user
-     */
-    public function removeUser(\UserBundle\Entity\User $user)
-    {
-        $this->users->removeElement($user);
-    }
-
-    /**
-     * Get users
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getUsers()
-    {
-        return $this->users;
-    }
-
-    /**
      * Set rating
      *
      * @param float $rating
@@ -505,26 +485,58 @@ class Movie
     }
 
     /**
-     * Set runtimeNumber
+     * Set ratingNumber
      *
-     * @param integer $runtimeNumber
+     * @param integer $ratingNumber
      *
      * @return Movie
      */
-    public function setRuntimeNumber($runtimeNumber)
+    public function setRatingNumber($ratingNumber)
     {
-        $this->runtimeNumber = $runtimeNumber;
+        $this->ratingNumber = $ratingNumber;
 
         return $this;
     }
 
     /**
-     * Get runtimeNumber
+     * Get ratingNumber
      *
      * @return integer
      */
-    public function getRuntimeNumber()
+    public function getRatingNumber()
     {
-        return $this->runtimeNumber;
+        return $this->ratingNumber;
+    }
+
+    /**
+     * @return array
+     */
+    public function getFrVideos()
+    {
+        return $this->frVideos;
+    }
+
+    /**
+     * @param array $frVideos
+     */
+    public function setFrVideos($frVideos)
+    {
+        $this->frVideos = $frVideos;
+    }
+
+    /**
+     * @return array
+     */
+    public function getEnVideos()
+    {
+        return $this->enVideos;
+    }
+
+    /**
+     * @param array $enVideos
+     */
+    public function setEnVideos($enVideos)
+    {
+        $this->enVideos = $enVideos;
     }
 }
