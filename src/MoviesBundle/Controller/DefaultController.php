@@ -33,11 +33,13 @@ class DefaultController extends Controller
      */
     public function infoonmovieAction($movie)
     {
+        $modal = $this->getRequest()->query->get('modal', false);
         $movie = $this->get('api_service')->searchformovieAction($movie);
         $movie = $this->setLanguagesVideosForMovie($movie);
 
         return array(
-            'movie' => $movie
+            'movie' => $movie,
+            'modal' => $modal
         );
     }
 

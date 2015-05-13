@@ -1,4 +1,4 @@
-{% extends modal is defined ? '::modal.html.twig': '::general.html.twig' %}
+{% extends modal == true ? '::modal.html.twig': '::general.html.twig' %}
 
 {% block body %}
     <table class="table table-responsive" style="width: 80%; margin: auto;">
