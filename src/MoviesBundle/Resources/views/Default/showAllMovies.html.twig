@@ -21,7 +21,7 @@
                     <p class="title no-display">{{ movie.title }}</p>
                     <p class="rating no-display">{{ movie.rating }}</p>
                     <p class="date no-display">{{ movie.releaseDate|date("Y-m-d") }}</p>
-                    <a id="modalButton{{ movie.code }}" href="#" data-toggle="modal" data-target="#modalFor{{ movie.code }}">
+                    <a id="modalButton{{ movie.code }}" href="#" data-target="#modalFor{{ movie.code }}">
                         {% if movie.posterUrl is not null %}
                             <img src="https://image.tmdb.org/t/p/w185/{{ movie.posterUrl }}" alt=""/>
                         {% else %}
@@ -43,9 +43,7 @@
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         <h4 class="modal-title" id="myModalLabel">{{ movie.titleInLibrary }}</h4>
                     </div>
-                    <div class="modal-body">
-                        {#{{ include('MoviesBundle:Default:infoonmovie.html.twig', {'movie': movie, 'modal': true}) }}#}
-                    </div>
+                    <div class="modal-body" id="modalBody{{ movie.code }}"></div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">{% trans %}Fermer{% endtrans %}</button>
                     </div>
@@ -55,28 +53,44 @@
     {% endfor %}
 
     <script type="text/javascript">
-        // init Isotope
-        var $container = $('#isotop-movies-container').isotope({
-            getSortData: {
-                title: '.title',
-                rating: '.rating',
-                date: '.date'
-            }
-        });
-        // filter items on button click
-        $('#filters').on( 'click', 'button', function() {
-            var filterValue = $(this).attr('data-filter');
-            $container.isotope({ filter: filterValue });
-        });
-        $('#sorts').on( 'click', 'button', function() {
-            var sortByValue = $(this).attr('data-sort-by');
-            $container.isotope({ sortBy: sortByValue });
-        });
+        $(document).ready(function () {
+            $().waitingpopup();
 
-        {% for movie in movies %}
-            $('#modalButton{{ movie.code }}').clik(function(){
-
+            // init Isotope
+            var $container = $('#isotop-movies-container').isotope({
+                getSortData: {
+                    title: '.title',
+                    rating: '.rating',
+                    date: '.date'
+                }
             });
-        {% endfor %}
+            // filter items on button click
+            $('#filters').on( 'click', 'button', function() {
+                var filterValue = $(this).attr('data-filter');
+                $container.isotope({ filter: filterValue });
+            });
+            $('#sorts').on( 'click', 'button', function() {
+                var sortByValue = $(this).attr('data-sort-by');
+                $container.isotope({ sortBy: sortByValue });
+            });
+
+            {% for movie in movies %}
+                $('#modalButton{{ movie.code }}').click(function(){
+                    if ($('#modalBody{{ movie.code }}').html() == "") {
+                        $().waitingpopup("open");
+                        $.ajax({
+                            url: "{{ path('_infoonmovie', { 'movie': movie.title, 'modal': true }) }}"
+                        }).done(function(data ) {
+                            $('#modalBody{{ movie.code }}').html(data );
+                            $('#modalFor{{ movie.code }}').modal('show');
+                        }).always(function(){
+                            $().waitingpopup("close");
+                        });
+                    } else {
+                        $('#modalFor{{ movie.code }}').modal('show');
+                    }
+                });
+            {% endfor %}
+        });
     </script>
 {% endblock %}
